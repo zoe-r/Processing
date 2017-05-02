@@ -7,7 +7,11 @@ int blackColorR=0;
 int blackColorG=0;
 int blackColorB=0;
 int x=300;
-int y=x; 
+int y=180;
+int l= 262;
+int ly= 185;
+int r=302;
+int ry= 185;
 
 void setup()
 {
@@ -34,38 +38,79 @@ void draw()
   if (keyPressed && (key == CODED)){
     if (keyCode == LEFT){
       x=x-5;
+      l=l-5;
+      r=r-5;
     } else if (keyCode== RIGHT){
       x=x+5;
+      l=l+5;
+      r=r+5;
+    }
+  }
+  if  (keyPressed && (key == CODED)){
+    if (keyCode == UP){
+      y=y-5;
+      ly=ly-5;
+      ry=ry-5;
+    } else if (keyCode== DOWN){
+      y=y+5;
+      ly=ly+5;
+      ry=ry+5;
     }
   }
   
+  //Eye Movement
+  if(mouseX> l){
+    l=l+2;
+  }
+  if (mouseX< l){
+    l=l-2;
+  }
+  if(mouseY>ly){
+    ly=ly+2;
+  }
+  if (mouseY<ly){
+    ly=ly-2;
+  }
+  if(mouseX> r){
+    r=r+2;
+  }
+  if (mouseX< r){
+    r=r-2;
+  }
+  if(mouseY>ry){
+    ry=ry+2;
+  }
+  if (mouseY<ry){
+    ry=ry-2;
+  }
+    
   //body
   fill(blackColorR, blackColorG, blackColorB);
-  ellipse(x-20, 280, 150, 200);
+  ellipse(x-20, y+100, 150, 200);
   //tummy
   fill(whiteColorR, whiteColorG, whiteColorB);
-  ellipse(x-20, 290, 100, 150);
+  ellipse(x-20, y+110, 100, 150);
   //head
   fill(blackColorR, blackColorG, blackColorB);
-  ellipse(x-20, 180, 120, 120);
+  ellipse(x-20, y, 120, 120);
   //face
   fill(whiteColorR, whiteColorG, whiteColorB);
   beginShape();
-  arc(x-20, 180, 100, 100, 0, PI);
-  arc(x-45, 180, 50, 40, PI, TWO_PI);
-  arc(x+5, 180, 50, 40, PI, TWO_PI);
+  arc(x-20, y, 100, 100, 0, PI);
+  arc(x-45, y, 50, 40, PI, TWO_PI);
+  arc(x+5, y, 50, 40, PI, TWO_PI);
   endShape(CLOSE);
   //nose
   fill(252, 172, 74);
-  triangle(x-20, 210, x-30, 200, x-10, 200);
+  triangle(x-20, y+30, x-30, y+20, x-10, y+20);
   //left eye
   fill(0);
-  ellipse(x-40, 185, 10, 15);
+  ellipse(x-40, y+5, 10, 15);
   fill(whiteColorR, whiteColorG, whiteColorB);
-  ellipse(y-38, 185, 3, 7); //Iris 
+  ellipse(l, ly, 3, 7); //Iris 
   //right eye
   fill(blackColorR, blackColorG, blackColorB);
-  ellipse(x, 185, 10, 15);
+  ellipse(x, y+5, 10, 15);
   fill(whiteColorR, whiteColorG, whiteColorB);
-  ellipse(y+2, 185, 3, 7); //Iris
+  ellipse(r, ry, 3, 7); //Iris
 }
